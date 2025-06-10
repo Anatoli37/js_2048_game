@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const board = game.getState();
     const score = game.getScore();
     const gameStatus = game.getStatus();
-    
+
     gridContainer.innerHTML = '';
 
     board.forEach((row, i) => {
