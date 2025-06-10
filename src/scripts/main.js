@@ -6,31 +6,43 @@ document.addEventListener('DOMContentLoaded', () => {
   const messageWin = document.querySelector('.message-win');
   const messageLose = document.querySelector('.message-lose');
   const restartBtn = document.querySelector('.restart-btn');
+  const startMsg = document.querySelector('.message-start');
 
   const game = new Game(null, render);
 
   function render() {
     const board = game.getState();
     const score = game.getScore();
-    const gameStatus = game.getStatus();
+    const status = game.getStatus();
 
     gridContainer.innerHTML = '';
 
     board.forEach((row, i) => {
       row.forEach((value, j) => {
         const tile = document.createElement('div');
+        tile.classList.add('field-cell');
 
-        tile.classList.add('tile', `tile-${value}`);
+        if (value !== 0) {
+          tile.classList.add(`field-cell--${value}`);
+          tile.textContent = value;
+        }
+
         tile.dataset.row = i;
         tile.dataset.col = j;
-        tile.textContent = value !== 0 ? value : '';
         gridContainer.appendChild(tile);
       });
     });
 
     scoreDisplay.textContent = score;
-    messageWin.classList.toggle('hidden', gameStatus !== 'win');
-    messageLose.classList.toggle('hidden', gameStatus !== 'lose');
+    messageWin.classList.toggle('hidden', status !== 'win');
+    messageLose.classList.toggle('hidden', status !== 'lose');
+    startMsg.classList.add('hidden');
+
+    if (status === 'win' || status === 'lose') {
+      restartBtn.textContent = 'Restart';
+      restartBtn.classList.remove('start');
+      restartBtn.classList.add('restart');
+    }
   }
 
   window.addEventListener('keydown', (e) => {
@@ -52,6 +64,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   restartBtn.addEventListener('click', () => {
     game.restart();
+    restartBtn.textContent = 'Restart';
+    restartBtn.classList.remove('start');
+    restartBtn.classList.add('restart');
   });
 
   render();
