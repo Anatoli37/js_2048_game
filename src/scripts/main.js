@@ -13,13 +13,14 @@ document.addEventListener('DOMContentLoaded', () => {
   function render() {
     const board = game.getState();
     const score = game.getScore();
-    const status = game.getStatus();
-
+    const gameStatus = game.getStatus();
+    
     gridContainer.innerHTML = '';
 
     board.forEach((row, i) => {
       row.forEach((value, j) => {
         const tile = document.createElement('div');
+
         tile.classList.add('field-cell');
 
         if (value !== 0) {
@@ -34,8 +35,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     scoreDisplay.textContent = score;
-    messageWin.classList.toggle('hidden', status !== 'win');
-    messageLose.classList.toggle('hidden', status !== 'lose');
+    messageWin.classList.toggle('hidden', gameStatus !== 'win');
+    messageLose.classList.toggle('hidden', gameStatus !== 'lose');
+
     startMsg.classList.add('hidden');
 
     if (status === 'win' || status === 'lose') {
