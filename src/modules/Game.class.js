@@ -14,7 +14,7 @@ class Game {
 
   createEmptyBoard() {
     return Array.from({ length: this.boardSize }, () =>
-      Array(this.boardSize).fill(0),
+      Array(this.boardSize).fill(0)
     );
   }
 
