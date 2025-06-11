@@ -198,3 +198,9 @@ h1 {
   padding: 10px;
   border-radius: 5px;
 }
+
+.field-cell--empty {
+  background-color: #cdc1b4; // або інший колір "порожньої" плитки
+  border-radius: 4px;
+  opacity: 0.5;
+}

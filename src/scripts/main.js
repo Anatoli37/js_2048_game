@@ -26,6 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (value !== 0) {
           tile.classList.add(`field-cell--${value}`);
           tile.textContent = value;
+        } else {
+          tile.classList.add('field-cell--empty');
         }
 
         tile.dataset.row = i;
