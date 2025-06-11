@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     startMsg.classList.add('hidden');
 
-    if (status === 'win' || status === 'lose') {
+    if (gameStatus === 'win' || gameStatus === 'lose') {
       restartBtn.textContent = 'Restart';
       restartBtn.classList.remove('start');
       restartBtn.classList.add('restart');
@@ -66,10 +66,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   restartBtn.addEventListener('click', () => {
     game.restart();
-    restartBtn.textContent = 'Restart';
-    restartBtn.classList.remove('start');
-    restartBtn.classList.add('restart');
-  });
+    startMsg.classList.add('hidden');
 
-  render();
+    // Якщо кнопка ще має текст "Start", змінити на "Restart"
+    if (restartBtn.textContent === 'Start') {
+      restartBtn.textContent = 'Restart';
+      restartBtn.classList.remove('start');
+      restartBtn.classList.add('restart');
+    }
+
+    render();
+  });
 });

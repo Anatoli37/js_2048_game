@@ -13,9 +13,9 @@ class Game {
   }
 
   createEmptyBoard() {
-    return Array.from({ length: this.boardSize }, () =>
-      Array(this.boardSize).fill(0),
-    );
+    return Array.from({ length: this.boardSize }, () => {
+      return Array(this.boardSize).fill(0);
+    });
   }
 
   getState() {
@@ -73,6 +73,11 @@ class Game {
     if (this.serialize(newBoard) !== original) {
       this.board = newBoard;
       this.spawnTile();
+
+      // Перевірка на виграш
+      if (this.board.flat().includes(2048)) {
+        this.status = 'win';
+      }
 
       if (this.isGameOver()) {
         this.status = 'lose';
